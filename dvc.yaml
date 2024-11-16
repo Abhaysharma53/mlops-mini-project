@@ -23,3 +23,10 @@ stages:
     - feature_engineering.max_features
     outs:
     - data/processed
+  model_training:
+    cmd: python src/models/model_training.py
+    deps:
+    - data/processed
+    - src/models/model_training.py
+    outs:
+    - models/model.pkl
