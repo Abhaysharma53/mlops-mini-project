@@ -1,0 +1,4 @@
+[core]
+    remote = mlops_remote
+['remote "mlops_remote"']
+    url = C:\Users\admin\AppData\Local\Temp
