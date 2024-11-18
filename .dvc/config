@@ -1,4 +1,4 @@
 [core]
-    remote = mlops_remote
-['remote "mlops_remote"']
-    url = C:\Users\admin\AppData\Local\Temp
+    remote = cloud-remote
+['remote "cloud-remote"']
+    url = s3://mlops-test-abhay
