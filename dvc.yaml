@@ -23,6 +23,7 @@ stages:
     - feature_engineering.max_features
     outs:
     - data/processed
+    - models/vectorizer.pkl
   model_training:
     cmd: python src/models/model_training.py
     deps:
