@@ -13,7 +13,7 @@ import os
 
 
 # Set up DagsHub credentials for MLflow tracking
-dagshub_token = os.getenv("MLOPS_PROJECT")
+dagshub_token = os.getenv("DAGSHUB_PAT")
 if not dagshub_token:
     raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
 
