@@ -33,6 +33,8 @@ stages:
     - models/model.pkl
   model_evaluation:
     cmd: python src/models/model_evaluation.py
+    env:
+      DAGSHUB_PAT: ${{ secrets.MLOPS_PROJECT }}
     deps:
     - models/model.pkl
     - src/models/model_evaluation.py
