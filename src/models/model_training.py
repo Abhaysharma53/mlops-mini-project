@@ -7,6 +7,7 @@ from sklearn.linear_model import LogisticRegression
 import yaml
 import logging
 
+
 # logging configuration
 logger = logging.getLogger('model_building')
 logger.setLevel('DEBUG')
