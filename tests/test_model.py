@@ -49,17 +49,26 @@ class TestModelLoading(unittest.TestCase):
     def test_model_signature(self):
         # Create a dummy input for the model based on expected input shape
         input_text = "hi how are you"
-        input_data = self.vectorizer.transform([input_text])
-        input_df = pd.DataFrame(input_data.toarray(), columns=[str(i) for i in range(input_data.shape[1])])
+        
+        # Transform input using vectorizer
+        input_data = self.vectorizer.transform([input_text]).toarray()
+        
+        # Ensure input is in the expected format (e.g., numpy array)
+        # If necessary, convert input_data to a DataFrame or a numpy array depending on the model input
+        input_df = pd.DataFrame(input_data, columns=[str(i) for i in range(input_data.shape[1])])
 
-        # Predict using the new model to verify the input and output shapes
-        prediction = self.new_model.predict(input_df)
-
-        # Verify the input shape
+        # Verify the input shape matches expected feature count
         self.assertEqual(input_df.shape[1], len(self.vectorizer.get_feature_names_out()))
 
-        # Verify the output shape (assuming binary classification with a single output)
+        # Load model if needed (ensure you're using the correct method)
+        model = mlflow.pyfunc.load_model(self.model_path)  # Ensure correct path
+        
+        # Predict using the model to verify input and output shapes
+        prediction = model.predict(input_df)  # Ensure input is in the correct format
+
+        # Verify the output shape
         self.assertEqual(len(prediction), input_df.shape[0])
-        self.assertEqual(len(prediction.shape), 1)  # Assuming a single output column for binary classification
+        self.assertEqual(len(prediction.shape), 1)  # Assuming binary classification
+
 if __name__ == "__main__":
     unittest.main()
