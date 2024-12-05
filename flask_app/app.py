@@ -10,11 +10,23 @@ import string
 from mlflow import MlflowClient
 
 import pickle
-from preprocessingUtility import normalize_text
+from flask_app.preprocessingUtility import normalize_text
 
 
-dagshub.init(repo_owner='Abhaysharma53', repo_name='mlops-mini-project', mlflow=True)
-mlflow.set_tracking_uri('https://dagshub.com/Abhaysharma53/mlops-mini-project.mlflow')
+dagshub_token = os.getenv("DAGSHUB_PAT")
+if not dagshub_token:
+        raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "Abhaysharma53"
+repo_name = "mlops-mini-project"
+
+    # Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+
 
 
 app = Flask(__name__)
@@ -64,6 +76,7 @@ def predict():
     return render_template('index.html', result= result[0])
     #return str(result[0])
 
-app.run(debug=True)
+if __name__=="__main__":
+    app.run(debug=True)
 
 

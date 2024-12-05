@@ -1,6 +1,6 @@
 import unittest
 from flask_app.app import app
-from flask_app.preprocessingUtility import normalize_text
+
 
 class FlaskAppTests(unittest.TestCase):
 
