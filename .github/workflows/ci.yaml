@@ -70,7 +70,7 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_HUB_USERNAME }}/emotion-detection
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 instance
         if: success()
         uses: appleboy/ssh-action@v0.1.5
         with:
