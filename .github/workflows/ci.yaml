@@ -71,7 +71,7 @@ jobs:
         run: |
           docker push 637423429951.dkr.ecr.eu-north-1.amazonaws.com/abhayx-mlops:latest
 
-                - name: Deploy to EC2
+      - name: Deploy to EC2
         if: success()
         uses: appleboy/ssh-action@v0.1.5
         with:
