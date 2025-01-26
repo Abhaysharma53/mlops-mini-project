@@ -15,7 +15,7 @@ WORKDIR /app
 #     && python -m nltk.downloader stopwords wordnet \
 #     && rm -rf /var/lib/apt/lists/*  # Clean up APT cache to reduce image size
 
-RUN pip install --no-cache-dir -r requirements.txt && \ 
+RUN pip install -r requirements.txt && \ 
     python -m nltk.downloader stopwords wordnet 
 
     # Clean up APT cache to reduce image size
